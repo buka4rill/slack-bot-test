@@ -2,8 +2,8 @@ module.exports = () => {
   const homeTab = {
     // Home tabs must be enabled in your app configuration page under "App Home"
     type: "home",
-    callback_id: "open-home",
-    private_metadata: "view_home",
+    callback_id: "open_home",
+    private_metadata: "open_home",
     blocks: [
       {
         type: "section",

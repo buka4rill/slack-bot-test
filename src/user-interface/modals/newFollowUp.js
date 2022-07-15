@@ -7,10 +7,11 @@ module.exports = () => {
     },
     submit: {
       type: "plain_text",
-      text: "Next",
+      text: "Create Follow Up",
       emoji: true,
     },
     type: "modal",
+    callback_id: "new_follow_up_created",
     close: {
       type: "plain_text",
       text: "Cancel",
@@ -135,6 +136,7 @@ module.exports = () => {
           emoji: true,
         },
       },
+      // Frequency input
       {
         type: "input",
         element: {
@@ -177,6 +179,22 @@ module.exports = () => {
           text: "Intevals",
           emoji: true,
         },
+      },
+      // action "Next" button
+      {
+        type: "actions",
+        elements: [
+          {
+            type: "button",
+            text: {
+              type: "plain_text",
+              text: "Next: Channels & Members :arrow_right:",
+              emoji: true,
+            },
+            value: "next_to_channel_and_members_modal",
+            action_id: "next_to_channel_and_members_modal",
+          },
+        ],
       },
     ],
   };
