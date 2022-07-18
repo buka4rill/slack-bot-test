@@ -1,7 +1,7 @@
 // const { App, LogLevel } = require("@slack/bolt");
-require("dotenv").config();
-const { App } = require("@slack/bolt");
-const { registerListeners } = require("./src/listeners");
+require('dotenv').config();
+const { App } = require('@slack/bolt');
+const { registerListeners } = require('./src/listeners');
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -28,39 +28,13 @@ const app = new App({
 
 registerListeners(app);
 
-// Listens to incoming messages that contain "hello"
-// app.message("hello", async ({ message, say }) => {
-//   // console.log("message: ", message);
-//   // say() sends a message to the channel where the event was triggered
-//   await say({
-//     blocks: [
-//       {
-//         type: "section",
-//         text: {
-//           type: "mrkdwn",
-//           text: `Hey there <@${message.user}>!`,
-//         },
-//         accessory: {
-//           type: "button",
-//           text: {
-//             type: "plain_text",
-//             text: "Click Me",
-//           },
-//           action_id: "button_click",
-//         },
-//       },
-//     ],
-//     text: `Hey there <@${message.user}>!`,
-//   });
-// });
-
 (async () => {
   // Add db here...
 
   // Start your app
   await app.start();
 
-  console.log("⚡️ Bolt app is running!");
+  console.log('⚡️ Bolt app is running!');
 })();
 
 // Ex. 2

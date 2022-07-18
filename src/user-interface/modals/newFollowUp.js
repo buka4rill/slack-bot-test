@@ -1,198 +1,199 @@
 module.exports = () => {
   return {
+    type: 'modal',
+    private_metadata: 'create_standup',
+    callback_id: 'create_standup_1', // View identifier
     title: {
-      type: "plain_text",
-      text: "Create Standup",
+      type: 'plain_text',
+      text: 'Create Standup',
       emoji: true,
     },
     submit: {
-      type: "plain_text",
-      text: "Create Follow Up",
+      type: 'plain_text',
+      text: 'Create Follow Up',
       emoji: true,
     },
-    type: "modal",
-    callback_id: "new_follow_up_created",
     close: {
-      type: "plain_text",
-      text: "Cancel",
+      type: 'plain_text',
+      text: 'Cancel',
       emoji: true,
     },
     blocks: [
       {
-        type: "divider",
+        type: 'divider',
       },
       {
-        type: "input",
+        type: 'input',
         element: {
-          type: "plain_text_input",
+          type: 'plain_text_input',
           placeholder: {
-            type: "plain_text",
-            text: "Name of standup",
+            type: 'plain_text',
+            text: 'Name of standup',
             emoji: true,
           },
-          action_id: "plain_text_input-action",
+          action_id: 'name_of_standup',
         },
         label: {
-          type: "plain_text",
-          text: "Name",
+          type: 'plain_text',
+          text: 'Name',
           emoji: true,
         },
       },
       {
-        type: "input",
+        type: 'input',
         element: {
-          type: "timepicker",
+          type: 'timepicker',
           placeholder: {
-            type: "plain_text",
-            text: "Select when to send reminder",
+            type: 'plain_text',
+            text: 'Select when to send reminder',
             emoji: true,
           },
-          action_id: "timepicker-action",
+          action_id: 'standup_time',
         },
         label: {
-          type: "plain_text",
-          text: "Time",
+          type: 'plain_text',
+          text: 'Time',
           emoji: true,
         },
       },
       {
-        type: "input",
+        type: 'input',
         element: {
-          type: "checkboxes",
+          type: 'checkboxes',
           options: [
             {
               text: {
-                type: "plain_text",
-                text: "Monday",
+                type: 'plain_text',
+                text: 'Monday',
                 emoji: true,
               },
-              value: "value-0",
+              value: 'monday',
             },
             {
               text: {
-                type: "plain_text",
-                text: "Tuesday",
+                type: 'plain_text',
+                text: 'Tuesday',
                 emoji: true,
               },
-              value: "value-1",
+              value: 'tuesday',
             },
             {
               text: {
-                type: "plain_text",
-                text: "Wednesday",
+                type: 'plain_text',
+                text: 'Wednesday',
                 emoji: true,
               },
-              value: "value-2",
+              value: 'wednesday',
             },
           ],
-          action_id: "checkboxes-action",
+          action_id: 'days_of_the_week',
         },
         label: {
-          type: "plain_text",
-          text: "Days of the week",
+          type: 'plain_text',
+          text: 'Days of the week',
           emoji: true,
         },
       },
       {
-        type: "input",
+        type: 'input',
         element: {
-          type: "static_select",
+          type: 'static_select',
           placeholder: {
-            type: "plain_text",
-            text: "How many times do you want a reminder?",
-            emoji: true,
-          },
-          options: [
-            {
-              text: {
-                type: "plain_text",
-                text: "Once",
-                emoji: true,
-              },
-              value: "value-0",
-            },
-            {
-              text: {
-                type: "plain_text",
-                text: "Twice",
-                emoji: true,
-              },
-              value: "value-1",
-            },
-            {
-              text: {
-                type: "plain_text",
-                text: "Three times",
-                emoji: true,
-              },
-              value: "value-2",
-            },
-          ],
-          action_id: "static_select-action",
-        },
-        label: {
-          type: "plain_text",
-          text: "Frequency",
-          emoji: true,
-        },
-      },
-      // Frequency input
-      {
-        type: "input",
-        element: {
-          type: "static_select",
-          placeholder: {
-            type: "plain_text",
-            text: "Select time interval",
+            type: 'plain_text',
+            text: 'How many times do you want a reminder?',
             emoji: true,
           },
           options: [
             {
               text: {
-                type: "plain_text",
-                text: "5 mins",
+                type: 'plain_text',
+                text: 'Once',
                 emoji: true,
               },
-              value: "value-0",
+              value: 'once',
             },
             {
               text: {
-                type: "plain_text",
-                text: "10 mins",
+                type: 'plain_text',
+                text: 'Twice',
                 emoji: true,
               },
-              value: "value-1",
+              value: 'value-1',
             },
             {
               text: {
-                type: "plain_text",
-                text: "15 mins",
+                type: 'plain_text',
+                text: 'Thrice',
                 emoji: true,
               },
-              value: "value-2",
+              value: 'thrice',
             },
           ],
-          action_id: "static_select-action",
+          action_id: 'frequency',
         },
         label: {
-          type: "plain_text",
-          text: "Intevals",
+          type: 'plain_text',
+          text: 'Frequency',
+          emoji: true,
+        },
+      },
+      // Interval input
+      {
+        type: 'input',
+        element: {
+          type: 'static_select',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Select time interval',
+            emoji: true,
+          },
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: '5 mins',
+                emoji: true,
+              },
+              value: '5',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '10 mins',
+                emoji: true,
+              },
+              value: '10',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '15 mins',
+                emoji: true,
+              },
+              value: '15',
+            },
+          ],
+          action_id: 'interval',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Intevals',
           emoji: true,
         },
       },
       // action "Next" button
       {
-        type: "actions",
+        type: 'actions',
         elements: [
           {
-            type: "button",
+            type: 'button',
             text: {
-              type: "plain_text",
-              text: "Next: Channels & Members :arrow_right:",
+              type: 'plain_text',
+              text: 'Next: Channels & Members :arrow_right:',
               emoji: true,
             },
-            value: "next_to_channel_and_members_modal",
-            action_id: "next_to_channel_and_members_modal",
+            value: 'next_to_channel_and_members_modal',
+            action_id: 'next_to_channel_and_members_modal',
           },
         ],
       },
