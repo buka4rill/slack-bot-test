@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const QuestionsSchema = new Schema({ question: String });
 const FollowupSchema = new Schema(
@@ -42,4 +42,4 @@ const FollowupSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Followup', FollowupSchema);
+module.exports = model('Followup', FollowupSchema);

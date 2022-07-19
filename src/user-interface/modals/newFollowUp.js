@@ -25,6 +25,7 @@ module.exports = () => {
       // Name input
       {
         type: 'input',
+        block_id: 'name_of_standup',
         element: {
           type: 'plain_text_input',
           placeholder: {
@@ -43,6 +44,7 @@ module.exports = () => {
       // Time input
       {
         type: 'input',
+        block_id: 'standup_time',
         element: {
           type: 'timepicker',
           placeholder: {
@@ -61,6 +63,7 @@ module.exports = () => {
       // Days of the week input
       {
         type: 'input',
+        block_id: 'days_of_the_week',
         element: {
           type: 'multi_static_select',
           placeholder: {
@@ -121,7 +124,6 @@ module.exports = () => {
           ],
           action_id: 'days_of_the_week',
         },
-
         label: {
           type: 'plain_text',
           text: 'Days of the week',
@@ -131,6 +133,7 @@ module.exports = () => {
       // Reminder input
       {
         type: 'input',
+        block_id: 'reminder',
         element: {
           type: 'static_select',
           placeholder: {
@@ -183,6 +186,7 @@ module.exports = () => {
       // Interval input
       {
         type: 'input',
+        block_id: 'interval',
         element: {
           type: 'static_select',
           placeholder: {
@@ -252,6 +256,7 @@ module.exports = () => {
       },
       {
         type: 'input',
+        block_id: 'channels',
         element: {
           type: 'multi_static_select',
           placeholder: {
@@ -293,6 +298,7 @@ module.exports = () => {
       },
       {
         type: 'input',
+        block_id: 'enable_threads',
         element: {
           type: 'radio_buttons',
           options: [
@@ -323,6 +329,7 @@ module.exports = () => {
       },
       {
         type: 'input',
+        block_id: 'sync_members',
         element: {
           type: 'radio_buttons',
           options: [
@@ -353,6 +360,7 @@ module.exports = () => {
       },
       {
         type: 'input',
+        block_id: 'channel_members',
         element: {
           type: 'multi_static_select',
           placeholder: {
@@ -404,6 +412,7 @@ module.exports = () => {
       // Question Input
       {
         type: 'input',
+        block_id: 'question_1',
         element: {
           type: 'plain_text_input',
           placeholder: {
@@ -422,6 +431,7 @@ module.exports = () => {
       // Question input
       {
         type: 'input',
+        block_id: 'question_2',
         element: {
           type: 'plain_text_input',
           placeholder: {
