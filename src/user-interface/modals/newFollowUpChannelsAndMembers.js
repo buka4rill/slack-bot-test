@@ -163,6 +163,22 @@ module.exports = () => {
           emoji: true,
         },
       },
+      // action "Next" button
+      {
+        type: 'actions',
+        elements: [
+          {
+            type: 'button',
+            text: {
+              type: 'plain_text',
+              text: 'Next: Add Questions :arrow_right:',
+              emoji: true,
+            },
+            value: 'next_to_add_questions',
+            action_id: 'next_to_add_questions',
+          },
+        ],
+      },
     ],
   };
 };

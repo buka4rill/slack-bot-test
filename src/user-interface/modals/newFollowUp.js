@@ -22,6 +22,7 @@ module.exports = () => {
       {
         type: 'divider',
       },
+      // Name input
       {
         type: 'input',
         element: {
@@ -39,6 +40,7 @@ module.exports = () => {
           emoji: true,
         },
       },
+      // Time input
       {
         type: 'input',
         element: {
@@ -56,6 +58,7 @@ module.exports = () => {
           emoji: true,
         },
       },
+      // Days of the week input
       {
         type: 'input',
         element: {
@@ -94,6 +97,7 @@ module.exports = () => {
           emoji: true,
         },
       },
+      // Reminder input
       {
         type: 'input',
         element: {
