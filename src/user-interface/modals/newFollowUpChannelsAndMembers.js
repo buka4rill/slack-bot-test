@@ -6,8 +6,8 @@ module.exports = () => {
       emoji: true,
     },
     type: 'modal',
-    callback_id: 'create_standup_2', // View identifier
-    private_metadata: 'create_standup',
+    callback_id: 'create_standup_modal', // View identifier
+    private_metadata: 'create_standup_2',
     submit: {
       type: 'plain_text',
       text: 'Create Follow Up',

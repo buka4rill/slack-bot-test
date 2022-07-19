@@ -23,7 +23,9 @@
   "homepage": "https://github.com/buka4rill/slack-bot-test#readme",
   "dependencies": {
     "@slack/bolt": "^3.11.3",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "mongoose": "^6.4.5",
+    "slack-block-builder": "^2.6.0"
   },
   "devDependencies": {
     "eslint": "^8.19.0",

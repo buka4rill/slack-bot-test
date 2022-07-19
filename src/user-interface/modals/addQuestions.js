@@ -1,8 +1,8 @@
 module.exports = () => {
   return {
     type: 'modal',
-    private_metadata: 'create_standup',
-    callback_id: 'create_standup_3', // View identifier
+    private_metadata: 'create_standup_3',
+    callback_id: 'create_standup_modal', // View identifier
     title: {
       type: 'plain_text',
       text: 'Add questions',

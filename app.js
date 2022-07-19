@@ -2,6 +2,7 @@
 require('dotenv').config();
 const { App } = require('@slack/bolt');
 const { registerListeners } = require('./src/listeners');
+const mongoose = require('mongoose');
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -12,6 +13,32 @@ const app = new App({
   // you still need to listen on some port!
   port: process.env.PORT || 3000,
 });
+
+// Send the app object to different registered slack app listeners
+registerListeners(app);
+
+(async () => {
+  // Add db here...
+  mongoose
+    .connect(process.env.MONGODB_URI, {
+      dbName: 'Ayabot-database',
+      useNewUrlParser: true,
+      // useCreateIndex: true,
+      useUnifiedTopology: true,
+      // useFindAndModify: false,
+    })
+    .then(() => {
+      console.log('⚡️⚡️ Connected to MongoDB!!');
+    })
+    .catch((err) => {
+      console.error('error connecting to MongoDB', err.message);
+    });
+
+  // Start your app
+  await app.start();
+
+  console.log('⚡️ Bolt app is running...');
+})();
 
 // Ex. 1
 // Subscribe to 'app_mention' event
@@ -25,17 +52,6 @@ const app = new App({
 //     console.error(error);
 //   }
 // });
-
-registerListeners(app);
-
-(async () => {
-  // Add db here...
-
-  // Start your app
-  await app.start();
-
-  console.log('⚡️ Bolt app is running!');
-})();
 
 // Ex. 2
 // Subscribe to 'message.channels' events

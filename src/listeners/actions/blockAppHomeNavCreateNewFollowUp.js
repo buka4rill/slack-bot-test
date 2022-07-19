@@ -1,6 +1,11 @@
 const { newFollowUp } = require('../../user-interface/modals');
 
-const appHomeNavCreateNewFollowUp = async ({ body, ack, client, logger }) => {
+const appHomeNavCreateNewFollowUpCallback = async ({
+  body,
+  ack,
+  client,
+  logger,
+}) => {
   try {
     await ack();
     const result = await client.views.open({
@@ -14,5 +19,5 @@ const appHomeNavCreateNewFollowUp = async ({ body, ack, client, logger }) => {
 };
 
 module.exports = {
-  appHomeNavCreateNewFollowUp,
+  appHomeNavCreateNewFollowUpCallback,
 };

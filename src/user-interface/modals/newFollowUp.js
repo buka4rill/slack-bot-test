@@ -2,7 +2,7 @@ module.exports = () => {
   return {
     type: 'modal',
     private_metadata: 'create_standup',
-    callback_id: 'create_standup_1', // View identifier
+    callback_id: 'create_standup_modal', // View identifier
     title: {
       type: 'plain_text',
       text: 'Create Standup',
@@ -62,13 +62,17 @@ module.exports = () => {
       {
         type: 'input',
         element: {
-          type: 'checkboxes',
+          type: 'multi_static_select',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Select days for reminder',
+            emoji: true,
+          },
           options: [
             {
               text: {
                 type: 'plain_text',
                 text: 'Monday',
-                emoji: true,
               },
               value: 'monday',
             },
@@ -76,7 +80,6 @@ module.exports = () => {
               text: {
                 type: 'plain_text',
                 text: 'Tuesday',
-                emoji: true,
               },
               value: 'tuesday',
             },
@@ -84,13 +87,41 @@ module.exports = () => {
               text: {
                 type: 'plain_text',
                 text: 'Wednesday',
-                emoji: true,
               },
               value: 'wednesday',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Thursday',
+              },
+              value: 'thursday',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Friday',
+              },
+              value: 'friday',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Saturday',
+              },
+              value: 'saturday',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Sunday',
+              },
+              value: 'sunday',
             },
           ],
           action_id: 'days_of_the_week',
         },
+
         label: {
           type: 'plain_text',
           text: 'Days of the week',
@@ -111,6 +142,14 @@ module.exports = () => {
             {
               text: {
                 type: 'plain_text',
+                text: 'No reminder',
+                emoji: true,
+              },
+              value: 'no reminder',
+            },
+            {
+              text: {
+                type: 'plain_text',
                 text: 'Once',
                 emoji: true,
               },
@@ -122,7 +161,7 @@ module.exports = () => {
                 text: 'Twice',
                 emoji: true,
               },
-              value: 'value-1',
+              value: 'twice',
             },
             {
               text: {
@@ -133,11 +172,11 @@ module.exports = () => {
               value: 'thrice',
             },
           ],
-          action_id: 'frequency',
+          action_id: 'reminder',
         },
         label: {
           type: 'plain_text',
-          text: 'Frequency',
+          text: 'Reminder',
           emoji: true,
         },
       },
@@ -155,26 +194,26 @@ module.exports = () => {
             {
               text: {
                 type: 'plain_text',
-                text: '5 mins',
-                emoji: true,
-              },
-              value: '5',
-            },
-            {
-              text: {
-                type: 'plain_text',
-                text: '10 mins',
-                emoji: true,
-              },
-              value: '10',
-            },
-            {
-              text: {
-                type: 'plain_text',
                 text: '15 mins',
                 emoji: true,
               },
               value: '15',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '30 mins',
+                emoji: true,
+              },
+              value: '30',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '60 mins',
+                emoji: true,
+              },
+              value: '60',
             },
           ],
           action_id: 'interval',
@@ -186,6 +225,219 @@ module.exports = () => {
         },
       },
       // action "Next" button
+      // {
+      //   type: 'actions',
+      //   elements: [
+      //     {
+      //       type: 'button',
+      //       text: {
+      //         type: 'plain_text',
+      //         text: 'Next: Channels & Members :arrow_right:',
+      //         emoji: true,
+      //       },
+      //       value: 'next_to_channel_and_members_modal',
+      //       action_id: 'next_to_channel_and_members_modal',
+      //     },
+      //   ],
+      // },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: ':ghost: *Channels & Members*',
+        },
+      },
+      {
+        type: 'divider',
+      },
+      {
+        type: 'input',
+        element: {
+          type: 'multi_static_select',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Add channels',
+            emoji: true,
+          },
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Channel 1',
+              },
+              value: 'value-0',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Channel 2',
+              },
+              value: 'value-1',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Channel 3',
+              },
+              value: 'value-2',
+            },
+          ],
+          action_id: 'channels',
+        },
+
+        label: {
+          type: 'plain_text',
+          text: 'Channels',
+          emoji: true,
+        },
+      },
+      {
+        type: 'input',
+        element: {
+          type: 'radio_buttons',
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: 'No',
+                emoji: true,
+              },
+              value: 'no',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Yes',
+                emoji: true,
+              },
+              value: 'yes',
+            },
+          ],
+          action_id: 'enable_threads',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Do you want to enable thread messages',
+          emoji: true,
+        },
+      },
+      {
+        type: 'input',
+        element: {
+          type: 'radio_buttons',
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: 'No',
+                emoji: true,
+              },
+              value: 'no',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Yes',
+                emoji: true,
+              },
+              value: 'yes',
+            },
+          ],
+          action_id: 'sync_members',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Sync all members of the channel',
+          emoji: true,
+        },
+      },
+      {
+        type: 'input',
+        element: {
+          type: 'multi_static_select',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Add channel Members',
+            emoji: true,
+          },
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Peter',
+              },
+              value: 'value-0',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Paul',
+              },
+              value: 'value-1',
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'John',
+              },
+              value: 'value-2',
+            },
+          ],
+          action_id: 'channel_members',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Channel members',
+          emoji: true,
+        },
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: ':ghost: *Add questions*',
+        },
+      },
+      {
+        type: 'divider',
+      },
+      // Question Input
+      {
+        type: 'input',
+        element: {
+          type: 'plain_text_input',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Add your question',
+            emoji: true,
+          },
+          action_id: 'question_1',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Name',
+          emoji: true,
+        },
+      },
+      // Question input
+      {
+        type: 'input',
+        element: {
+          type: 'plain_text_input',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Add your question',
+            emoji: true,
+          },
+          action_id: 'question_2',
+        },
+        label: {
+          type: 'plain_text',
+          text: 'Name',
+          emoji: true,
+        },
+      },
+      // Add Question Button
       {
         type: 'actions',
         elements: [
@@ -193,11 +445,11 @@ module.exports = () => {
             type: 'button',
             text: {
               type: 'plain_text',
-              text: 'Next: Channels & Members :arrow_right:',
+              text: 'Add Question',
               emoji: true,
             },
-            value: 'next_to_channel_and_members_modal',
-            action_id: 'next_to_channel_and_members_modal',
+            value: 'add_question',
+            action_id: 'add_question',
           },
         ],
       },
