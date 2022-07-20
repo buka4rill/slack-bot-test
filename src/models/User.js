@@ -4,11 +4,24 @@ const UserSchema = new Schema(
   {
     slackUserId: {
       type: String,
+      unique: true,
     },
-    slackOrganizationId: {
+    // slackOrganizationId: {
+    //   type: String,
+    // },
+    slackWorkspaceId: {
+      type: String,
+      unique: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    name: {
       type: String,
     },
-    slackWorkspaceId: {
+    username: {
       type: String,
     },
   },

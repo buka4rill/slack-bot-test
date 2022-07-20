@@ -1,9 +1,9 @@
-const { homeTabView } = require("../../user-interface/app-home");
+const { homeTabView } = require('../../user-interface/app-home');
 
 const appHomeOpenedCallback = async ({ client, event, body }) => {
   // console.log("event: ", event);
   // console.log("body: ", body);
-  if (event.tab !== "home") {
+  if (event.tab !== 'home') {
     // Ignore the `app_home_opened` event for everything
     // except home
     return;

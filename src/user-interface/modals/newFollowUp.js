@@ -187,6 +187,7 @@ module.exports = () => {
       {
         type: 'input',
         block_id: 'interval',
+        optional: true,
         element: {
           type: 'static_select',
           placeholder: {
@@ -270,21 +271,21 @@ module.exports = () => {
                 type: 'plain_text',
                 text: 'Channel 1',
               },
-              value: 'value-0',
+              value: 'channel 1',
             },
             {
               text: {
                 type: 'plain_text',
                 text: 'Channel 2',
               },
-              value: 'value-1',
+              value: 'channel 2',
             },
             {
               text: {
                 type: 'plain_text',
                 text: 'Channel 3',
               },
-              value: 'value-2',
+              value: 'channel 3',
             },
           ],
           action_id: 'channels',
@@ -299,6 +300,7 @@ module.exports = () => {
       {
         type: 'input',
         block_id: 'enable_threads',
+        optional: true,
         element: {
           type: 'radio_buttons',
           options: [
@@ -330,6 +332,7 @@ module.exports = () => {
       {
         type: 'input',
         block_id: 'sync_members',
+        optional: true,
         element: {
           type: 'radio_buttons',
           options: [
@@ -374,21 +377,21 @@ module.exports = () => {
                 type: 'plain_text',
                 text: 'Peter',
               },
-              value: 'value-0',
+              value: 'Peter',
             },
             {
               text: {
                 type: 'plain_text',
                 text: 'Paul',
               },
-              value: 'value-1',
+              value: 'Paul',
             },
             {
               text: {
                 type: 'plain_text',
                 text: 'John',
               },
-              value: 'value-2',
+              value: 'John',
             },
           ],
           action_id: 'channel_members',
@@ -431,6 +434,7 @@ module.exports = () => {
       // Question input
       {
         type: 'input',
+        optional: true,
         block_id: 'question_2',
         element: {
           type: 'plain_text_input',

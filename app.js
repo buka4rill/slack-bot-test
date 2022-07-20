@@ -18,7 +18,7 @@ const app = new App({
 registerListeners(app);
 
 (async () => {
-  // Add db here...
+  // Initialise database
   mongoose
     .connect(process.env.MONGODB_URI, {
       dbName: 'Ayabot-database',

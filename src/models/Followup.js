@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const QuestionsSchema = new Schema({ question: String });
+const DoWeekSchema = new Schema({ days: { type: String, required: true } });
 const FollowupSchema = new Schema(
   {
     name: {
@@ -12,32 +13,42 @@ const FollowupSchema = new Schema(
       type: String,
       required: true,
     },
-    days_of_the_week: {
-      type: String,
-      required: true,
-    },
+    daysOfTheWeek: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     reminder: {
       type: String,
       required: true,
     },
-    intervals: {
+    interval: {
       type: String,
     },
     channels: {
-      type: String,
+      type: [String],
       required: true,
     },
-    enable_thread_messages: {
-      type: Boolean,
-    },
-    sync_all_members: {
-      type: Boolean,
-    },
-    channel_members: {
-      type: Strings,
+    // enableThreadMessages: {
+    //   type: String,
+    //   default: 'no',
+    // },
+    // syncAllMembers: {
+    //   type: Boolean,
+    // },
+    channelMembers: {
+      type: [String],
       required: true,
     },
-    questions: [QuestionsSchema],
+    questions: {
+      type: [String],
+    },
+    creatorId: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      required: true,
+    },
   },
   { timestamps: true }
 );

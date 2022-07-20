@@ -9,6 +9,7 @@ const {
 } = require('./blockAppHomeNavCreateNewFollowUpNextToAddQuestion.js');
 
 module.exports.register = (app) => {
+  // Action listener for the create followup modal
   app.action(
     'app_home_nav_create_new_follow_up',
     appHomeNavCreateNewFollowUpCallback
