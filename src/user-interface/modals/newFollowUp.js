@@ -1,4 +1,4 @@
-module.exports = (allUsers) => {
+module.exports = (allUsers, channels) => {
   const usersOptionsArr = [];
   allUsers.map((user) => {
     // Push all slack users into array
@@ -7,7 +7,18 @@ module.exports = (allUsers) => {
         type: 'plain_text',
         text: user.name,
       },
-      value: user.name,
+      value: user.id, // 'name' not unique
+    });
+  });
+
+  const channelsArr = [];
+  channels.map((channel) => {
+    channelsArr.push({
+      text: {
+        type: 'plain_text',
+        text: channel.name,
+      },
+      value: channel.id, // 'name' not unique
     });
   });
 
@@ -277,29 +288,30 @@ module.exports = (allUsers) => {
             text: 'Add channels',
             emoji: true,
           },
-          options: [
-            {
-              text: {
-                type: 'plain_text',
-                text: 'Channel 1',
-              },
-              value: 'channel 1',
-            },
-            {
-              text: {
-                type: 'plain_text',
-                text: 'Channel 2',
-              },
-              value: 'channel 2',
-            },
-            {
-              text: {
-                type: 'plain_text',
-                text: 'Channel 3',
-              },
-              value: 'channel 3',
-            },
-          ],
+          // options: [
+          //   {
+          //     text: {
+          //       type: 'plain_text',
+          //       text: 'Channel 1',
+          //     },
+          //     value: 'channel 1',
+          //   },
+          //   {
+          //     text: {
+          //       type: 'plain_text',
+          //       text: 'Channel 2',
+          //     },
+          //     value: 'channel 2',
+          //   },
+          //   {
+          //     text: {
+          //       type: 'plain_text',
+          //       text: 'Channel 3',
+          //     },
+          //     value: 'channel 3',
+          //   },
+          // ],
+          options: channelsArr,
           action_id: 'channels',
         },
 
@@ -417,7 +429,7 @@ module.exports = (allUsers) => {
         },
         label: {
           type: 'plain_text',
-          text: 'Name',
+          text: 'Question 1',
           emoji: true,
         },
       },
@@ -437,7 +449,7 @@ module.exports = (allUsers) => {
         },
         label: {
           type: 'plain_text',
-          text: 'Name',
+          text: 'Question 2',
           emoji: true,
         },
       },

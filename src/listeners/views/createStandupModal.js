@@ -50,6 +50,7 @@ const createStandupModalCallback = async ({
   const channelMembers =
     view.state.values.channel_members.channel_members.selected_options;
   const question1 = view.state.values.question_1.question_1;
+  const question2 = view.state.values.question_2.question_2;
   // console.log('reminder: ', reminder);
   // console.log('days of the week: ', daysOfTheWeek);
   // console.log('channels: ', channels);
@@ -106,6 +107,16 @@ const createStandupModalCallback = async ({
   let channelMembersArr = [];
   channelMembers.map((member) => channelMembersArr.push(member.value));
 
+  // If there are any questions...
+  const questionsArr = [];
+  if (question1) {
+    questionsArr.push(question1.value);
+  }
+  if (!question2) {
+    return;
+  }
+  questionsArr.push(question2.value);
+
   try {
     // Save Followup to database
     const followupObject = {
@@ -117,7 +128,7 @@ const createStandupModalCallback = async ({
       channels: channelsArr,
       // enableThreadMessages: enableThreads.value,
       channelMembers: channelMembersArr,
-      // questions:
+      questions: questionsArr,
       creatorId: creator._id,
     };
     await FollowupModel.create(followupObject);
