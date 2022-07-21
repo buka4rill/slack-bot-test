@@ -1,4 +1,16 @@
-module.exports = () => {
+module.exports = (allUsers) => {
+  const usersOptionsArr = [];
+  allUsers.map((user) => {
+    // Push all slack users into array
+    usersOptionsArr.push({
+      text: {
+        type: 'plain_text',
+        text: user.name,
+      },
+      value: user.name,
+    });
+  });
+
   return {
     type: 'modal',
     private_metadata: 'create_standup',
@@ -371,29 +383,7 @@ module.exports = () => {
             text: 'Add channel Members',
             emoji: true,
           },
-          options: [
-            {
-              text: {
-                type: 'plain_text',
-                text: 'Peter',
-              },
-              value: 'Peter',
-            },
-            {
-              text: {
-                type: 'plain_text',
-                text: 'Paul',
-              },
-              value: 'Paul',
-            },
-            {
-              text: {
-                type: 'plain_text',
-                text: 'John',
-              },
-              value: 'John',
-            },
-          ],
+          options: usersOptionsArr,
           action_id: 'channel_members',
         },
         label: {

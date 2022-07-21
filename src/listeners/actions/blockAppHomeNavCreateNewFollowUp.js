@@ -6,11 +6,16 @@ const appHomeNavCreateNewFollowUpCallback = async ({
   client,
   logger,
 }) => {
+  const allUsers = await client.users.list();
+  usersThatAreNotBots = allUsers.members.filter(
+    (user) => user.is_bot === false && user.name !== 'slackbot'
+  );
+
   try {
     await ack();
     const result = await client.views.open({
       trigger_id: body.trigger_id,
-      view: newFollowUp(),
+      view: newFollowUp(usersThatAreNotBots),
     });
     logger.info(result);
   } catch (err) {

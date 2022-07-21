@@ -1,5 +1,6 @@
 const UserModel = require('../../models/User');
 const FollowupModel = require('../../models/Followup');
+const { standupCreated } = require('../../user-interface/modals');
 
 const createStandupModalCallback = async ({
   ack,
@@ -121,8 +122,12 @@ const createStandupModalCallback = async ({
     };
     await FollowupModel.create(followupObject);
 
-    // Acknowledge state and update view
+    // Acknowledge state and update
     await ack();
+    // await ack({
+    //   response_action: 'update',
+    //   view: standupCreated
+    // });
 
     if (creator.slackUserId === body.user.id) {
       await client.chat.postMessage({

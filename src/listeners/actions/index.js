@@ -1,12 +1,12 @@
 const {
   appHomeNavCreateNewFollowUpCallback,
 } = require('./blockAppHomeNavCreateNewFollowUp');
-const {
-  nextToChannelAndMembersModalCallback,
-} = require('./blockAppHomeNavCreateNewFollowUpChannelAndMembers.js');
-const {
-  nextToAddQuestionCallback,
-} = require('./blockAppHomeNavCreateNewFollowUpNextToAddQuestion.js');
+// const {
+//   nextToChannelAndMembersModalCallback,
+// } = require('./blockAppHomeNavCreateNewFollowUpChannelAndMembers.js');
+// const {
+//   nextToAddQuestionCallback,
+// } = require('./blockAppHomeNavCreateNewFollowUpNextToAddQuestion.js');
 
 module.exports.register = (app) => {
   // Action listener for the create followup modal
