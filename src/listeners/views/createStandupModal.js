@@ -2,16 +2,10 @@ const UserModel = require('../../models/User');
 const FollowupModel = require('../../models/Followup');
 const { standupCreated } = require('../../user-interface/modals');
 
-const createStandupModalCallback = async ({
-  ack,
-  view,
-  body,
-  client,
-  event,
-}) => {
+const createStandupModalCallback = async ({ ack, view, body, client }) => {
   // console.log('view state: ', view.state.values);
   // console.log('body: ', body);
-  console.log('event: ', event);
+  // console.log('event: ', event);
 
   // Get admin user
   const creator = await UserModel.findOne({
@@ -107,7 +101,7 @@ const createStandupModalCallback = async ({
   let channelMembersArr = [];
   channelMembers.map((member) => channelMembersArr.push(member.value));
 
-  // If there are any questions...
+  // If there are any questions... push to arr.
   const questionsArr = [];
   if (question1) {
     questionsArr.push(question1.value);
@@ -134,11 +128,11 @@ const createStandupModalCallback = async ({
     await FollowupModel.create(followupObject);
 
     // Acknowledge state and update
-    await ack();
-    // await ack({
-    //   response_action: 'update',
-    //   view: standupCreated
-    // });
+    // await ack();
+    await ack({
+      response_action: 'update',
+      view: standupCreated(standupName.value),
+    });
 
     if (creator.slackUserId === body.user.id) {
       await client.chat.postMessage({
