@@ -1,6 +1,7 @@
 const UserModel = require('../../models/User');
 const FollowupModel = require('../../models/Followup');
 const { standupCreated } = require('../../user-interface/modals');
+const { channel } = require('slack-block-builder');
 
 const createStandupModalCallback = async ({ ack, view, body, client }) => {
   // console.log('view state: ', view.state.values);
@@ -36,7 +37,7 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
     view.state.values.days_of_the_week.days_of_the_week.selected_options; // array
   const reminder = view.state.values.reminder.reminder.selected_option;
   const interval = view.state.values.interval.interval.selected_option;
-  const channels = view.state.values.channels.channels.selected_options; // array
+  const channel = view.state.values.channels.channels.selected_option; // array
   const enableThreads =
     view.state.values.enable_threads.enable_threads.selected_option;
   const syncMembers =
@@ -49,6 +50,12 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
   // console.log('days of the week: ', daysOfTheWeek);
   // console.log('channels: ', channels);
   // console.log('channel members: ', channelMembers);
+
+  // const allChannels = await client.conversations.list();
+  // console.log('allChannels: ', allChannels);
+  // const generalChannel = allChannels.channels.find(
+  //   (channel) => channel.name === 'general'
+  // );
 
   // Form validation & error handling
   if (!standupName === null) {
@@ -96,8 +103,8 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
   // Create array instances for Array inputs
   let daysArr = [];
   daysOfTheWeek.map((day) => daysArr.push(day.value));
-  let channelsArr = [];
-  channels.map((channel) => channelsArr.push(channel.value));
+  // let channelsArr = [];
+  // channels.map((channel) => channelsArr.push(channel.value));
   let channelMembersArr = [];
   channelMembers.map((member) => channelMembersArr.push(member.value));
 
@@ -119,12 +126,13 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
       daysOfTheWeek: daysArr,
       reminder: reminder.value,
       interval: interval.value,
-      channels: channelsArr,
+      channel: channel.value,
       // enableThreadMessages: enableThreads.value,
       channelMembers: channelMembersArr,
       questions: questionsArr,
       creatorId: creator._id,
     };
+
     await FollowupModel.create(followupObject);
 
     // Acknowledge state and update
@@ -135,9 +143,11 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
     });
 
     if (creator.slackUserId === body.user.id) {
+      // console.log('this is true');
       await client.chat.postMessage({
-        channel: event.channel,
-        text: `<@${body.user.username} created a new standup `,
+        // channel: generalChannel.id,
+        channel: channel.value,
+        text: `<@${body.user.username}> created a new standup. \n *Title: ${standupName.value}*`,
       });
     }
   } catch (err) {

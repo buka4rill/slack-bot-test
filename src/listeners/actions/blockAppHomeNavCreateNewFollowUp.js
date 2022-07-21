@@ -15,7 +15,7 @@ const appHomeNavCreateNewFollowUpCallback = async ({
   // Get all channels in the workspace
   const channelsObj = await client.conversations.list();
   const channels = channelsObj.channels;
-  console.log('chanels: ', channels);
+  // console.log('chanels: ', channels);
   try {
     await ack();
     const result = await client.views.open({

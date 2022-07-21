@@ -282,35 +282,12 @@ module.exports = (allUsers, channels) => {
         type: 'input',
         block_id: 'channels',
         element: {
-          type: 'multi_static_select',
+          type: 'static_select',
           placeholder: {
             type: 'plain_text',
             text: 'Add channels',
             emoji: true,
           },
-          // options: [
-          //   {
-          //     text: {
-          //       type: 'plain_text',
-          //       text: 'Channel 1',
-          //     },
-          //     value: 'channel 1',
-          //   },
-          //   {
-          //     text: {
-          //       type: 'plain_text',
-          //       text: 'Channel 2',
-          //     },
-          //     value: 'channel 2',
-          //   },
-          //   {
-          //     text: {
-          //       type: 'plain_text',
-          //       text: 'Channel 3',
-          //     },
-          //     value: 'channel 3',
-          //   },
-          // ],
           options: channelsArr,
           action_id: 'channels',
         },

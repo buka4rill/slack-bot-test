@@ -26,8 +26,8 @@ const FollowupSchema = new Schema(
     interval: {
       type: String,
     },
-    channels: {
-      type: [String],
+    channel: {
+      type: String,
       required: true,
     },
     // enableThreadMessages: {
