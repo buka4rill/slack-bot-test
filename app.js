@@ -1,8 +1,10 @@
 // const { App, LogLevel } = require("@slack/bolt");
 require('dotenv').config();
 const { App } = require('@slack/bolt');
+const axios = require('axios');
 const { registerListeners } = require('./src/listeners');
 const mongoose = require('mongoose');
+const FollowupModel = require('./src/models/Followup');
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -16,6 +18,8 @@ const app = new App({
 
 // Send the app object to different registered slack app listeners
 registerListeners(app);
+
+// console.log(app);
 
 (async () => {
   // Initialise database
@@ -38,7 +42,74 @@ registerListeners(app);
   await app.start();
 
   console.log('⚡️ Bolt app is running...');
+
+  // const savedFollowups = await FollowupModel.find({});
+
+  // for (let followup of savedFollowups) {
+  //   // for each followup, get time, send reminders to users
+  //   try {
+  //     axios
+  //       .post(
+  //         'https://slack.com/api/reminders.add',
+  //         {
+  //           // token: process.env.SLACK_BOT_TOKEN,
+  //           time: 'at 04:21pm',
+  //           text: 'eat food',
+  //           // recurrence: {
+  //           //   frequency: 'daily',
+  //           // },
+  //           user: 'U03NKU61P42',
+  //         },
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${process.env.SLACK_USER_OAUTH_TOKEN}`,
+  //           },
+  //         }
+  //       )
+  //       .then((res) => console.log(res.data));
+  //     // .catch((err) => console.err('err: ', err));
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
+  //   // .then((response) => {
+  //   //   console.log(response.data);
+  //   // });
+  //   // await app.client.reminders.add({
+  //   //   time: 'at 01:38pm',
+  //   //   text: 'eat food',
+  //   //   recurrence: {
+  //   //     frequency: 'daily',
+  //   //   },
+  //   //   user: 'U03NKU61P42',
+  //   // });
+  // }
+  // await app.client.reminders.add()
 })();
+
+// app.event('hello', async ({ event, client }) => {
+//   console.log('hello');
+//   try {
+//     const savedFollowups = await FollowupModel.find({});
+
+//     for (let followup of savedFollowups) {
+//       console.log('right here yeah!');
+//       // console.log('here now');
+//       // for each followup, get time, send reminders to users
+//       await client.reminders.add({
+//         time: 'at 01:38pm',
+//         text: 'eat food',
+//         recurrence: {
+//           frequency: 'daily',
+//         },
+//         user: 'U03NKU61P42',
+//       });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
 
 // Ex. 1
 // Subscribe to 'app_mention' event

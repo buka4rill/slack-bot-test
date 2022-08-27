@@ -1,6 +1,7 @@
 const {
   appHomeNavCreateNewFollowUpCallback,
 } = require('./blockAppHomeNavCreateNewFollowUp');
+const { createNewInput } = require('./newInput');
 // const {
 //   nextToChannelAndMembersModalCallback,
 // } = require('./blockAppHomeNavCreateNewFollowUpChannelAndMembers.js');
@@ -19,4 +20,5 @@ module.exports.register = (app) => {
   //   nextToChannelAndMembersModalCallback
   // );
   // app.action('next_to_add_questions', nextToAddQuestionCallback);
+  app.action('add_question', createNewInput);
 };

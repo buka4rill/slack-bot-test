@@ -438,7 +438,7 @@ module.exports = (allUsers, channels) => {
             type: 'button',
             text: {
               type: 'plain_text',
-              text: 'Add Question',
+              text: ':heavy_plus_sign: Add Question',
               emoji: true,
             },
             value: 'add_question',

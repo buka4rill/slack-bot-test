@@ -6,7 +6,7 @@ const { channel } = require('slack-block-builder');
 const createStandupModalCallback = async ({ ack, view, body, client }) => {
   // console.log('view state: ', view.state.values);
   // console.log('body: ', body);
-  // console.log('event: ', event);
+  console.log('here right now');
 
   // Get admin user
   const creator = await UserModel.findOne({
@@ -149,6 +149,17 @@ const createStandupModalCallback = async ({ ack, view, body, client }) => {
         channel: channel.value,
         text: `<@${body.user.username}> created a new standup. \n *Title: ${standupName.value}*`,
       });
+
+      // savedFollowups.map(followup => {
+      //   // for each followup, get time, send reminder to users
+      //   await client.reminders.add({
+      //     time: 'at 12:55pm',
+      //     recurrence: {
+      //       frequency: "daily",
+      //     },
+      //     user: "U03NKU61P42"
+      //   })
+      // })
     }
   } catch (err) {
     await ack();
